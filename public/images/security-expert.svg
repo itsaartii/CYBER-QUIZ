@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield Base -->
+  <path d="M100 20 L180 50 V100 C180 150 100 180 100 180 C100 180 20 150 20 100 V50 Z" 
+        fill="#ffebee" stroke="#d32f2f" stroke-width="4"/>
+  
+  <!-- Binary Background -->
+  <text x="40" y="70" fill="#ef5350" font-family="monospace" font-size="10">
+    10110101
+  </text>
+  <text x="120" y="90" fill="#ef5350" font-family="monospace" font-size="10">
+    01001101
+  </text>
+  <text x="60" y="110" fill="#ef5350" font-family="monospace" font-size="10">
+    11100110
+  </text>
+  
+  <!-- Circuit Board Pattern -->
+  <path d="M60 80 L140 80 M60 100 L140 100 M60 120 L140 120" 
+        stroke="#ef5350" stroke-width="1" fill="none"/>
+  <path d="M80 60 L80 140 M100 60 L100 140 M120 60 L120 140" 
+        stroke="#ef5350" stroke-width="1" fill="none"/>
+  
+  <!-- Central Security Icon -->
+  <circle cx="100" cy="100" r="20" fill="#d32f2f"/>
+  <path d="M90 100 L97 107 L110 93" 
+        stroke="white" stroke-width="3" fill="none"/>
+</svg> 

