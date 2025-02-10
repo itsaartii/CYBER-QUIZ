@@ -1,0 +1,376 @@
+/* At the top of the file, add these global transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+:root {
+  /* Light theme variables */
+  --background-color: #ffffff;
+  --secondary-bg: #f8f9fa;
+  --text-color: #2d3436;
+  --text-secondary: #636e72;
+  --primary-color: #0984e3;
+  --secondary-color: #6c757d;
+  --border-color: #dfe6e9;
+  --card-bg: #ffffff;
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --hover-color: #74b9ff;
+  --footer-bg: #0984e3;
+  --success-color: #00b894;
+  --error-color: #d63031;
+  --warning-color: #fdcb6e;
+  --quiz-option-bg: #f8f9fa;
+  --quiz-option-hover: #e9ecef;
+  --quiz-option-selected: #74b9ff;
+}
+
+.dark-theme {
+  /* Dark theme variables */
+  --background-color: #1a1b1e;
+  --secondary-bg: #2d3436;
+  --text-color: #f5f6fa;
+  --text-secondary: #b2bec3;
+  --primary-color: #74b9ff;
+  --secondary-color: #a4b0be;
+  --border-color: #4a4b4d;
+  --card-bg: #2d3436;
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  --hover-color: #0984e3;
+  --footer-bg: #2d3436;
+  --success-color: #00b894;
+  --error-color: #ff7675;
+  --warning-color: #ffeaa7;
+  --quiz-option-bg: #2d3436;
+  --quiz-option-hover: #3d4246;
+  --quiz-option-selected: #0984e3;
+}
+
+/* Apply theme variables to body */
+body {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Apply theme to common elements */
+a {
+  color: var(--primary-color) !important;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+/* Card styling */
+.MuiCard-root {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  box-shadow: var(--card-shadow) !important;
+  border: 1px solid var(--border-color);
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow), 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Paper styling */
+.MuiPaper-root {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Input styling */
+.MuiInputBase-root {
+  background-color: var(--secondary-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Theme toggle button styles */
+.theme-toggle-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  padding: 0;
+  outline: none;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background-color: var(--primary-color);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.theme-icon {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle-btn:hover .theme-icon {
+  color: var(--text-color);
+}
+
+/* Footer styling */
+footer {
+  background-color: var(--footer-bg) !important;
+}
+
+/* Typography colors */
+.MuiTypography-root {
+  color: var(--text-color) !important;
+}
+
+.MuiTypography-secondary {
+  color: var(--text-secondary) !important;
+}
+
+/* List items */
+.MuiListItem-root {
+  border-color: var(--border-color) !important;
+}
+
+/* Divider */
+.MuiDivider-root {
+  border-color: var(--border-color) !important;
+}
+
+/* Button styles */
+.MuiButton-contained {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.MuiButton-outlined {
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+/* Form controls */
+.MuiFormControl-root {
+  background-color: var(--secondary-bg);
+  border-radius: 8px;
+}
+
+/* Select dropdown */
+.MuiSelect-select {
+  background-color: var(--secondary-bg) !important;
+}
+
+/* Menu items */
+.MuiMenuItem-root {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+.MuiMenuItem-root:hover {
+  background-color: var(--secondary-bg) !important;
+}
+
+/* Quiz specific styles */
+.quiz-option {
+  background-color: var(--quiz-option-bg) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+.quiz-option:hover {
+  background-color: var(--quiz-option-hover) !important;
+}
+
+.quiz-option.selected {
+  background-color: var(--quiz-option-selected) !important;
+  color: white !important;
+}
+
+/* Results page specific styles */
+.MuiCircularProgress-root {
+  color: var(--primary-color) !important;
+}
+
+/* Badge card styling */
+.badge-card {
+  background-color: var(--card-bg) !important;
+  border: 2px solid var(--primary-color) !important;
+  box-shadow: var(--card-shadow) !important;
+}
+
+/* Dialog styling */
+.MuiDialog-paper {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+}
+
+/* Progress circle background */
+.MuiCircularProgress-circle {
+  stroke: var(--primary-color) !important;
+}
+
+/* Success text color */
+.MuiTypography-colorSuccess {
+  color: var(--success-color) !important;
+}
+
+/* Warning text color */
+.MuiTypography-colorWarning {
+  color: var(--warning-color) !important;
+}
+
+/* Secondary text color */
+.MuiTypography-colorTextSecondary {
+  color: var(--text-secondary) !important;
+}
+
+/* Paper styling for results */
+.results-paper {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+}
+
+/* Button styling */
+.MuiButton-containedPrimary {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.MuiButton-outlinedPrimary {
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.MuiButton-outlinedPrimary:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Dialog input styling */
+.MuiTextField-root {
+  background-color: var(--secondary-bg);
+  border-radius: 8px;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root {
+  color: var(--text-color);
+}
+
+.MuiTextField-root .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-color);
+}
+
+/* Divider in results */
+.results-divider {
+  background-color: var(--border-color) !important;
+}
+
+/* Enhance circular progress contrast in dark mode */
+.dark-theme .MuiCircularProgress-root {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
+}
+
+/* Badge card glow effect in dark mode */
+.dark-theme .badge-card {
+  box-shadow: 0 0 15px rgba(116, 185, 255, 0.1) !important;
+}
+
+/* Leaderboard specific styles */
+.MuiTableContainer-root {
+  background-color: var(--card-bg) !important;
+  border-radius: 8px;
+}
+
+.MuiTableCell-root {
+  color: var(--text-color) !important;
+  border-bottom-color: var(--border-color) !important;
+}
+
+.MuiTableHead-root .MuiTableCell-root {
+  background-color: var(--secondary-bg) !important;
+  font-weight: 600 !important;
+}
+
+.MuiTableBody-root .MuiTableRow-root:hover {
+  background-color: var(--secondary-bg) !important;
+}
+
+/* Top 3 ranks styling */
+.MuiTableBody-root .MuiTableRow-root:nth-child(-n+3) {
+  background-color: rgba(116, 185, 255, 0.1) !important;
+}
+
+.MuiTableBody-root .MuiTableRow-root:nth-child(-n+3):hover {
+  background-color: rgba(116, 185, 255, 0.2) !important;
+}
+
+/* Toggle button styles */
+.MuiToggleButtonGroup-root {
+  background-color: var(--secondary-bg) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+}
+
+.MuiToggleButton-root {
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+.MuiToggleButton-root.Mui-selected {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.MuiToggleButton-root:hover {
+  background-color: var(--quiz-option-hover) !important;
+}
+
+/* Empty state message */
+.MuiTableBody-root .MuiTableCell-root[colspan="5"] {
+  color: var(--text-secondary) !important;
+  padding: 2rem !important;
+}
+
+/* Chip styles in leaderboard */
+.MuiChip-root {
+  background-color: var(--secondary-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.MuiChip-root.MuiChip-colorPrimary {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.MuiChip-root.MuiChip-colorSuccess {
+  background-color: var(--success-color) !important;
+  color: white !important;
+}
+
+.MuiChip-root.MuiChip-colorWarning {
+  background-color: var(--warning-color) !important;
+  color: black !important;
+}
+
+.MuiChip-root.MuiChip-colorError {
+  background-color: var(--error-color) !important;
+  color: white !important;
+} 

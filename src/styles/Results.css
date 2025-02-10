@@ -1,0 +1,95 @@
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.results-card {
+  background-color: var(--card-bg-color);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.score-info {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.score-info p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.name-input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.name-input {
+  padding: 0.8rem;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+}
+
+.save-score-btn,
+.play-again-btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.save-score-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.save-score-btn:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.play-again-btn {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.play-again-btn:hover {
+  background-color: var(--secondary-hover-color);
+}
+
+.leaderboard-stats {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.leaderboard-stats p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: var(--text-color);
+}
+
+h1 {
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  text-align: center;
+} 

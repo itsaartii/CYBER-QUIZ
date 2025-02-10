@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 import quizData from '../data/questions.json';
 import Leaderboard from '../components/Leaderboard';
-import leaderboardData from '../data/leaderboard.json';
+import { saveScore, loadLeaderboardData } from '../utils/leaderboardUtils';
 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
@@ -72,6 +72,7 @@ function Results() {
 
   const [showNameDialog, setShowNameDialog] = useState(false);
   const [playerName, setPlayerName] = useState('');
+  const [leaderboardData, setLeaderboardData] = useState(loadLeaderboardData());
 
   const percentage = Math.round((score / total) * 100);
   const pointsPercentage = Math.round((points / maxPoints) * 100);
@@ -102,8 +103,10 @@ function Results() {
 
   const handleSaveScore = () => {
     if (playerName.trim()) {
-      // Here you would typically save the score to your backend
-      // For now, we'll just close the dialog
+      // Save score and update leaderboard data
+      saveScore(playerName, score, total, timeSpent, difficulty);
+      // Reload the leaderboard data to show the updated scores
+      setLeaderboardData(loadLeaderboardData());
       setShowNameDialog(false);
     }
   };
@@ -130,6 +133,7 @@ function Results() {
         sx={{
           mb: 2,
           fontSize: { xs: '2rem', sm: '3rem' },
+          fontWeight: 600,
         }}
       >
         Quiz Results
@@ -137,6 +141,7 @@ function Results() {
 
       <Paper
         elevation={3}
+        className="results-paper"
         sx={{
           p: { xs: 3, sm: 4 },
           width: '100%',
@@ -156,9 +161,6 @@ function Results() {
             value={pointsPercentage}
             size={120}
             thickness={4}
-            sx={{
-              color: percentage >= 60 ? 'success.main' : 'warning.main',
-            }}
           />
           <Box
             sx={{
@@ -175,56 +177,57 @@ function Results() {
             <Typography
               variant="h4"
               component="div"
-              color="text.secondary"
+              sx={{ fontWeight: 'bold' }}
             >
               {percentage}%
             </Typography>
           </Box>
         </Box>
 
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: 500 }}>
           {feedback.emoji} {feedback.message}
         </Typography>
 
-        <Typography variant="h6" color="text.secondary" gutterBottom>
+        <Typography variant="h6" color="textSecondary" gutterBottom>
           You scored {score} out of {total} questions correctly
         </Typography>
 
         <Box sx={{ mt: 2, mb: 3 }}>
-          <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+          <Typography variant="subtitle1" color="textSecondary" gutterBottom>
             Time: {formatTime(timeSpent)}
           </Typography>
-          <Typography variant="subtitle1" color="success.main" gutterBottom>
+          <Typography variant="subtitle1" className="success-text" gutterBottom>
             Time Bonus: +{timeBonus} points
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+          <Typography variant="subtitle1" color="textSecondary" gutterBottom>
             Total Points: {points} / {maxPoints + timeBonus}
           </Typography>
         </Box>
 
         {earnedBadge && (
           <Card
+            className="badge-card"
             sx={{
               mt: 3,
               mb: 3,
-              backgroundColor: 'background.default',
+              transition: 'all 0.3s ease',
             }}
           >
             <CardContent>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: 500 }}>
                 Badge Earned!
               </Typography>
               <Typography variant="h4" gutterBottom>
                 {earnedBadge[1].icon}
               </Typography>
-              <Typography variant="subtitle1" color="text.secondary">
+              <Typography variant="subtitle1" color="textSecondary">
                 {earnedBadge[1].name}
               </Typography>
             </CardContent>
           </Card>
         )}
 
-        <Divider sx={{ my: 3 }} />
+        <Divider className="results-divider" sx={{ my: 3 }} />
 
         <Grid
           container
@@ -240,6 +243,7 @@ function Results() {
               color="primary"
               fullWidth
               onClick={() => setShowNameDialog(true)}
+              sx={{ py: 1.5 }}
             >
               Save Score to Leaderboard
             </Button>
@@ -249,11 +253,11 @@ function Results() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               fullWidth
-              onClick={() => navigate('/quiz', { state: { difficulty } })}
-              sx={{ mb: { xs: 2, sm: 0 } }}
+              onClick={() => navigate('/quiz')}
+              sx={{ py: 1.5 }}
             >
               Try Again
             </Button>
@@ -264,6 +268,7 @@ function Results() {
               color="primary"
               fullWidth
               onClick={() => navigate('/')}
+              sx={{ py: 1.5 }}
             >
               Back to Home
             </Button>
@@ -276,7 +281,13 @@ function Results() {
         difficulty={difficulty}
       />
 
-      <Dialog open={showNameDialog} onClose={() => setShowNameDialog(false)}>
+      <Dialog
+        open={showNameDialog}
+        onClose={() => setShowNameDialog(false)}
+        PaperProps={{
+          className: "MuiDialog-paper"
+        }}
+      >
         <DialogTitle>Save Your Score</DialogTitle>
         <DialogContent>
           <TextField
@@ -287,11 +298,21 @@ function Results() {
             fullWidth
             value={playerName}
             onChange={(e) => setPlayerName(e.target.value)}
+            variant="outlined"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setShowNameDialog(false)}>Cancel</Button>
-          <Button onClick={handleSaveScore} variant="contained">Save</Button>
+          <Button onClick={() => setShowNameDialog(false)} color="primary">
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleSaveScore} 
+            color="primary" 
+            variant="contained"
+            disabled={!playerName.trim()}
+          >
+            Save
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>

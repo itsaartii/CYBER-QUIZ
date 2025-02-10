@@ -10,9 +10,33 @@ import Typography from '@mui/material/Typography';
 import Home from './pages/Home';
 import QuizPage from './pages/QuizPage';
 import Results from './pages/Results';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+import ThemeManager from './components/ThemeManager';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Create theme with responsive breakpoints
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0984e3',
+      light: '#74b9ff',
+      dark: '#0652DD',
+    },
+    secondary: {
+      main: '#6c757d',
+      light: '#a4b0be',
+      dark: '#2d3436',
+    },
+    background: {
+      default: '#ffffff',
+      paper: '#ffffff',
+    },
+    text: {
+      primary: '#2d3436',
+      secondary: '#636e72',
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,
@@ -26,14 +50,56 @@ const theme = createTheme({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
       fontSize: '2rem',
+      fontWeight: 600,
       '@media (min-width:600px)': {
         fontSize: '2.5rem',
       },
     },
     h2: {
       fontSize: '1.75rem',
+      fontWeight: 500,
       '@media (min-width:600px)': {
         fontSize: '2rem',
+      },
+    },
+    body1: {
+      fontSize: '1rem',
+      lineHeight: 1.6,
+    },
+    button: {
+      textTransform: 'none',
+      fontWeight: 500,
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          transition: 'background-color 0.3s, color 0.3s',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          padding: '8px 16px',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          transition: 'all 0.3s ease',
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+        },
       },
     },
   },
@@ -47,7 +113,6 @@ function App() {
         <Box
           sx={{
             minHeight: '100vh',
-            backgroundColor: '#f5f5f5',
             padding: { xs: 1, sm: 2 },
             paddingBottom: { xs: '60px', sm: '70px' },
             display: 'flex',
@@ -67,6 +132,15 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/quiz" element={<QuizPage />} />
               <Route path="/results" element={<Results />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </Container>
           <Box
@@ -88,6 +162,7 @@ function App() {
               Website created by CYBER SQUAD
             </Typography>
           </Box>
+          <ThemeManager />
         </Box>
       </Router>
     </ThemeProvider>

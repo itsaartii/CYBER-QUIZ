@@ -1006,7 +1006,7 @@
         "question": "Examine this GraphQL query. What attack is possible?",
         "scenario": {
           "type": "graphql_security",
-          "query": "query { user(id: 1) { friends { friends { friends { ... } } } }"
+          "query": "query { user(id: 1) { friends { friends { friends { ... } } }"
         },
         "options": [
           "SQL injection",
@@ -1114,7 +1114,7 @@
       {
         "id": "a1",
         "type": "scenario",
-        "question": "Analyze this memory dump. What type of exploit is present?",
+        "question": "You're analyzing a memory dump from a compromised system. What type of exploit is present?",
         "scenario": {
           "type": "memory_analysis",
           "pattern": "Stack overflow with shellcode signature",
@@ -1122,7 +1122,8 @@
             "EIP": "0x41414141",
             "ESP": "0x00400000"
           },
-          "memory": "Contains NOP sled followed by shellcode"
+          "memory": "Contains NOP sled followed by shellcode",
+          "context": "System crashed after processing user input"
         },
         "options": [
           "Race condition",
@@ -1180,16 +1181,19 @@
       {
         "id": "a4",
         "type": "scenario",
-        "question": "Analyze this web request. What vulnerability is being exploited?",
+        "question": "You're analyzing suspicious web traffic and notice this unusual request pattern. What vulnerability is being exploited?",
         "scenario": {
           "type": "web_request",
+          "context": "Production web server logs",
+          "timestamp": "2024-03-15 14:23:45 UTC",
           "method": "POST",
           "headers": {
             "Content-Type": "application/x-www-form-urlencoded",
             "Content-Length": "1024",
             "Transfer-Encoding": "chunked"
           },
-          "body": "Multiple different content lengths"
+          "body": "Multiple different content lengths",
+          "pattern": "Multiple requests with conflicting length headers"
         },
         "options": [
           "XSS",
@@ -1204,15 +1208,19 @@
       {
         "id": "a5",
         "type": "scenario",
-        "question": "Review this Docker configuration. What security issue exists?",
+        "question": "During a container security audit, you discover this Docker configuration. What security issue exists?",
         "scenario": {
           "type": "container_config",
+          "context": "Production microservices environment",
           "dockerfile": {
             "USER": "root",
             "VOLUME": ["/var/run/docker.sock"],
             "PRIVILEGED": true
           },
-          "risks": ["container escape", "host system access"]
+          "risks": ["container escape", "host system access"],
+          "environment": "Kubernetes cluster",
+          "service": "Data processing pipeline",
+          "access_level": "Highly privileged"
         },
         "options": [
           "Exposed ports",
@@ -1227,15 +1235,31 @@
       {
         "id": "a6",
         "type": "scenario",
-        "question": "Analyze this binary behavior. What malware technique is used?",
+        "question": "While analyzing a suspicious executable, you observe this behavior pattern. What malware technique is used?",
         "scenario": {
           "type": "binary_analysis",
+          "context": "Malware incident response",
           "behavior": {
-            "self_modifying": true,
-            "encrypted_sections": true,
-            "anti_debug": true,
-            "vm_detection": true
-          }
+            "self_modifying": {
+              "type": "Runtime code modification",
+              "frequency": "Every execution",
+              "method": "Memory page permission changes"
+            },
+            "encrypted_sections": {
+              "type": "Custom encryption",
+              "trigger": "Runtime decryption",
+              "target": "Payload sections"
+            },
+            "anti_debug": {
+              "methods": ["IsDebuggerPresent checks", "Timing checks", "Exception handlers"],
+              "responses": "Self-termination"
+            },
+            "vm_detection": {
+              "checks": ["Hardware fingerprinting", "VM artifacts", "Sandbox detection"],
+              "evasion": "Alternative execution paths"
+            }
+          },
+          "detection_status": "Undetected by standard AV"
         },
         "options": [
           "Polymorphic code",
@@ -1317,11 +1341,15 @@
       {
         "id": "a10",
         "type": "scenario",
-        "question": "Review this smart contract code. What vulnerability exists?",
+        "question": "During a smart contract security audit, you discover this withdrawal function. What vulnerability exists?",
         "scenario": {
           "type": "smart_contract",
+          "context": "DeFi platform withdrawal function",
+          "platform": "Ethereum",
+          "contract_name": "TokenVault",
           "code": "function withdraw(uint amount) public {\n  require(balance[msg.sender] >= amount);\n  msg.sender.call.value(amount)();\n  balance[msg.sender] -= amount;\n}",
-          "platform": "Ethereum"
+          "environment": "Production blockchain",
+          "asset_type": "ERC20 tokens"
         },
         "options": [
           "Integer overflow",
@@ -1336,10 +1364,17 @@
       {
         "id": "a11",
         "type": "scenario",
-        "question": "Analyze this buffer overflow exploit. What protection is being bypassed?",
+        "question": "While analyzing a compromised system, you find this exploit attempt in the logs. What protection is being bypassed?",
         "scenario": {
           "type": "exploit_analysis",
-          "payload": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\\x90\\x90\\x90\\x90\\x90\\x90\\x90\\x90shellcode",
+          "context": "System compromise investigation",
+          "timestamp": "2024-03-15 15:30:00",
+          "target_process": "web_server.exe",
+          "payload": {
+            "structure": "AAAA...(repeated 100 times)\\x90\\x90\\x90\\x90\\x90\\x90\\x90\\x90shellcode",
+            "size": "256 bytes",
+            "components": ["Buffer overflow", "NOP sled", "Shellcode"]
+          },
           "target": "Stack-based buffer",
           "protection": "DEP enabled"
         },
@@ -1399,12 +1434,27 @@
       {
         "id": "a14",
         "type": "scenario",
-        "question": "Analyze this race condition exploit. What vulnerability is being targeted?",
+        "question": "During a security assessment, you discover this code sequence in a privileged service. What vulnerability is being targeted?",
         "scenario": {
           "type": "race_condition",
-          "code": "check_permission();\nopen_file();\nmodify_file();",
-          "timing": "Time-of-check to time-of-use",
-          "privilege": "root"
+          "context": "Privileged system service",
+          "environment": "Multi-threaded application",
+          "code": {
+            "sequence": [
+              "check_permission();",
+              "open_file();",
+              "modify_file();"
+            ],
+            "threading": "Concurrent access possible",
+            "permissions": "root-level operations"
+          },
+          "timing": {
+            "window": "Microseconds between check and use",
+            "reproducibility": "Intermittent",
+            "impact": "Privilege escalation possible"
+          },
+          "privilege": "root",
+          "affected_resource": "System configuration files"
         },
         "options": [
           "TOCTOU",
@@ -1527,10 +1577,15 @@
       {
         "id": "a20",
         "type": "scenario",
-        "question": "Review this SGX enclave code. What's the vulnerability?",
+        "question": "During a security review of SGX enclave code, you discover this memory operation. What's the vulnerability?",
         "scenario": {
           "type": "enclave_security",
-          "code": "size_t len = untrusted_length;\nmemcpy(trusted_buf, untrusted_data, len);"
+          "context": "Intel SGX secure enclave implementation",
+          "module": "Data processing function",
+          "code": "size_t len = untrusted_length;\nmemcpy(trusted_buf, untrusted_data, len);",
+          "environment": "Production server",
+          "data_type": "Sensitive customer information",
+          "security_boundary": "Trusted vs. Untrusted memory"
         },
         "options": [
           "Buffer overflow",
@@ -1545,12 +1600,22 @@
       {
         "id": "a21",
         "type": "scenario",
-        "question": "Examine this side-channel attack. What's being exploited?",
+        "question": "While testing a cryptographic implementation, you observe this pattern. What's being exploited?",
         "scenario": {
           "type": "side_channel",
-          "pattern": "Cache access timing",
+          "context": "Cryptographic implementation testing",
+          "target_system": "Hardware security module",
+          "pattern": {
+            "type": "Cache access timing",
+            "measurements": "Microsecond precision",
+            "samples": "1000 operations"
+          },
           "target": "AES implementation",
-          "measurement": "High-resolution timer"
+          "measurement": {
+            "tool": "High-resolution timer",
+            "precision": "nanoseconds",
+            "pattern": "Consistent timing variations"
+          }
         },
         "options": [
           "Cache timing",
@@ -1565,12 +1630,27 @@
       {
         "id": "a22",
         "type": "scenario",
-        "question": "Analyze this hardware debug interface. What's exposed?",
+        "question": "During an IoT device security assessment, you find this debug interface configuration. What's exposed?",
         "scenario": {
           "type": "debug_security",
-          "interface": "JTAG",
-          "protection": "None",
-          "access": "External pins"
+          "context": "IoT device firmware analysis",
+          "interface": {
+            "type": "JTAG",
+            "pins": "Externally accessible",
+            "status": "Enabled in production"
+          },
+          "protection": {
+            "authentication": "None",
+            "encryption": "None",
+            "access_control": "None"
+          },
+          "access": {
+            "physical": "External debug header",
+            "restrictions": "None",
+            "capabilities": ["Full memory access", "CPU control", "Flash programming"]
+          },
+          "device_type": "Security camera",
+          "environment": "Production deployment"
         },
         "options": [
           "Memory dump",
@@ -1585,12 +1665,28 @@
       {
         "id": "a23",
         "type": "scenario",
-        "question": "Review this DMA protection. What's misconfigured?",
+        "question": "While auditing a server's DMA protection mechanisms, you find this configuration. What's misconfigured?",
         "scenario": {
           "type": "dma_security",
-          "iommu": "Disabled",
-          "bounce_buffers": "Optional",
-          "memory_regions": "All accessible"
+          "context": "High-performance server",
+          "system_type": "PCIe-based architecture",
+          "iommu": {
+            "status": "Disabled",
+            "configuration": "Default settings",
+            "driver": "Not loaded"
+          },
+          "bounce_buffers": {
+            "status": "Optional",
+            "implementation": "Partial",
+            "validation": "None"
+          },
+          "memory_regions": {
+            "accessibility": "All accessible",
+            "protection": "None",
+            "sensitive_data": "Exposed"
+          },
+          "hardware": "Server with multiple PCIe slots",
+          "risk_level": "Critical"
         },
         "options": [
           "IOMMU disabled",

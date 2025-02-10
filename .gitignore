@@ -1,2 +1,24 @@
+# Dependencies
+node_modules
+
+# Firebase
+.firebase/
+.firebaserc
+
+# Production
+build
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
+node_modules
 node_modules
 node_modules
