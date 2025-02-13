@@ -1,19 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
-// Import pages
 import Home from './pages/Home';
 import QuizPage from './pages/QuizPage';
-import Results from './pages/Results';
+import Results from './components/Results';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
-import ThemeManager from './components/ThemeManager';
+import StudentLogin from './pages/StudentLogin';
+import StudentSignup from './pages/StudentSignup';
 import ProtectedRoute from './components/ProtectedRoute';
+import StudentProtectedRoute from './components/StudentProtectedRoute';
+import ThemeManager from './components/ThemeManager';
 
 // Create theme with responsive breakpoints
 const theme = createTheme({
@@ -129,18 +130,37 @@ function App() {
             }}
           >
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/quiz" element={<QuizPage />} />
-              <Route path="/results" element={<Results />} />
+              {/* Student Authentication Routes */}
+              <Route path="/student/login" element={<StudentLogin />} />
+              <Route path="/student/signup" element={<StudentSignup />} />
+
+              {/* Protected Student Routes */}
+              <Route path="/" element={
+                <StudentProtectedRoute>
+                  <Home />
+                </StudentProtectedRoute>
+              } />
+              <Route path="/quiz" element={
+                <StudentProtectedRoute>
+                  <QuizPage />
+                </StudentProtectedRoute>
+              } />
+              <Route path="/results" element={
+                <StudentProtectedRoute>
+                  <Results />
+                </StudentProtectedRoute>
+              } />
+
+              {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
-              <Route
-                path="/admin/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/admin/dashboard" element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } />
+
+              {/* Redirect unmatched routes to login */}
+              <Route path="*" element={<Navigate to="/student/login" replace />} />
             </Routes>
           </Container>
           <Box

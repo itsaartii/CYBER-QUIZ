@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -10,7 +10,11 @@ import {
   CardActions,
   CardMedia,
   Chip,
+  Paper,
 } from '@mui/material';
+import PreQuizNotesDialog from '../components/PreQuizNotesDialog';
+import { generatePreQuizNotes } from '../utils/aiUtils';
+import questionsData from '../data/questions.json';
 
 function DifficultyCard({ title, description, color, points, image, onSelect }) {
   return (
@@ -87,6 +91,24 @@ function DifficultyCard({ title, description, color, points, image, onSelect }) 
 
 function Home() {
   const navigate = useNavigate();
+  const [showNotes, setShowNotes] = useState(false);
+  const [selectedDifficulty, setSelectedDifficulty] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [studentData, setStudentData] = useState(null);
+
+  useEffect(() => {
+    const data = localStorage.getItem('studentData');
+    if (data) {
+      setStudentData(JSON.parse(data));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('studentAuthenticated');
+    localStorage.removeItem('studentData');
+    navigate('/student/login');
+  };
 
   const difficulties = {
     beginner: {
@@ -112,8 +134,32 @@ function Home() {
     },
   };
 
-  const handleDifficultySelect = (difficulty) => {
-    navigate('/quiz', { state: { difficulty } });
+  const handleDifficultySelect = async (difficulty) => {
+    setSelectedDifficulty(difficulty);
+    setLoading(true);
+    setShowNotes(true);
+
+    try {
+      const questions = questionsData.questions[difficulty];
+      const generatedNotes = await generatePreQuizNotes(questions, difficulty);
+      setNotes(generatedNotes);
+    } catch (error) {
+      console.error('Error generating notes:', error);
+      navigate('/quiz', { state: { difficulty } });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCloseNotes = () => {
+    setShowNotes(false);
+    setNotes([]);
+    setSelectedDifficulty(null);
+  };
+
+  const handleStartQuiz = () => {
+    setShowNotes(false);
+    navigate('/quiz', { state: { difficulty: selectedDifficulty } });
   };
 
   return (
@@ -121,10 +167,28 @@ function Home() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100%',
+        minHeight: '100vh',
         gap: 2,
+        p: 3
       }}
     >
+      {/* Student Info Header */}
+      <Paper elevation={2} sx={{ p: 2, mb: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Box>
+            <Typography variant="h6">
+              Welcome, {studentData?.name || 'Student'}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Roll Number: {studentData?.rollNumber}
+            </Typography>
+          </Box>
+          <Button variant="outlined" color="primary" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Box>
+      </Paper>
+
       <Box sx={{ mb: 1 }}>
         <Typography
           variant="h1"
@@ -189,6 +253,14 @@ function Home() {
           </Typography>
         </Grid>
       </Grid>
+
+      <PreQuizNotesDialog
+        open={showNotes}
+        notes={notes}
+        loading={loading}
+        onClose={handleCloseNotes}
+        onStartQuiz={handleStartQuiz}
+      />
     </Box>
   );
 }

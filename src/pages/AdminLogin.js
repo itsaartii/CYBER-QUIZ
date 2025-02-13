@@ -18,7 +18,7 @@ const AdminLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // In a real application, you would want to hash the password and use environment variables
-    if (username === 'admin' && password === 'cybersquad2024') {
+    if (username === 'lnct' && password === '12345678') {
       localStorage.setItem('adminAuthenticated', 'true');
       navigate('/admin/dashboard');
     } else {
@@ -29,11 +29,12 @@ const AdminLogin = () => {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        p: 2,
+        minHeight: '100vh',
+        p: 3
       }}
     >
       <Paper
@@ -42,11 +43,14 @@ const AdminLogin = () => {
           p: 4,
           maxWidth: 400,
           width: '100%',
-          backgroundColor: 'var(--card-bg)',
+          borderRadius: 2
         }}
       >
         <Typography variant="h4" component="h1" gutterBottom align="center">
-          Admin Login
+          Institute Login
+        </Typography>
+        <Typography variant="body2" color="text.secondary" align="center" sx={{ mb: 3 }}>
+          Enter your institute credentials to access the dashboard
         </Typography>
         <form onSubmit={handleLogin}>
           {error && (
@@ -62,6 +66,7 @@ const AdminLogin = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            placeholder="Enter institute username"
           />
           <TextField
             fullWidth
@@ -72,6 +77,7 @@ const AdminLogin = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="Enter institute password"
           />
           <Button
             type="submit"
