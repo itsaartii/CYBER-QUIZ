@@ -45,24 +45,27 @@ http://localhost:3000
 ## Project Structure
 
 ```
-cyberquiz/
-│── public/
-│── src/
-│   │── assets/
-│   │── components/
-│   │   │── Quiz.js
-│   │   │── Scoreboard.js
-│   │   │── Badge.js
-│   │── data/
-│   │   │── questions.json
-│   │── pages/
-│   │   │── Home.js
-│   │   │── QuizPage.js
-│   │   │── Results.js
-│   │── App.js
-│   │── index.js
-│── package.json
-│── README.md
+CYBER-QUIZ/
+├── src/                          # Source code for the application
+│   ├── components/               # React components
+│   │   └── ImageWithFallback.js  # Component for rendering an image with a fallback
+│   ├── styles/                   # CSS styles for the application
+│   │   └── Results.css           # Styles for the results page or component
+│   ├── pages/                    # Pages for the application (if applicable)
+│   │   └── ...                   # Example: HomePage.js, QuizPage.js, ResultsPage.js
+│   ├── utils/                    # Utility functions or helpers
+│   │   └── ...                   # Example: api.js, constants.js
+│   ├── App.js                    # Main application component
+│   ├── index.js                  # Entry point for the React application
+│   └── ...                       # Other files (e.g., context, hooks)
+├── public/                       # Public assets (static files)
+│   ├── index.html                # Main HTML file
+│   ├── favicon.ico               # Favicon for the application
+│   └── ...                       # Other static assets (e.g., images, manifest.json)
+├── package.json                  # Project metadata and dependencies
+├── README.md                     # Documentation for the project
+├── .gitignore                    # Git ignore file
+└── ...                           # Other configuration files (e.g., .eslintrc, .prettierrc)
 ```
 
 ## Usage
